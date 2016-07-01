@@ -8,7 +8,8 @@ public class _WavyEffect : MonoBehaviour {
         ENSANCHANDO_BAJITO,
         VOLVIENDO_DE_BAJITO,
         INCREMENTANDO_ALTO,
-        VOLVIENDO_DE_ALTO
+        VOLVIENDO_DE_ALTO, 
+        PARADO
     }
 
     float frecuency = 1f;
@@ -27,9 +28,25 @@ public class _WavyEffect : MonoBehaviour {
         move(this.transform.localPosition);
     }
 
+    public void StopMoving()
+    {
+        this.state = movingState.PARADO;
+
+        this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(this.width, this.height, 1f), 0.1f);
+        this.transform.localPosition = new Vector3(this.pos.x, this.pos.y + (this.realheight * this.transform.localScale.y) / 2, this.pos.z);
+        this.width_percent = 1;
+        this.height_percent = 1;
+    }
+
+    public void StartMoving()
+    {
+        this.state = movingState.ENSANCHANDO_BAJITO;
+    }
+
     public void move(Vector3 position)
     {
         this.pos = position - new Vector3(0, (this.realheight * this.transform.localScale.y) / 2, 0);
+        this.transform.localPosition = position;
     }
 	
 	// Update is called once per frame
@@ -49,6 +66,9 @@ public class _WavyEffect : MonoBehaviour {
                 this.width_percent -= 0.01f;
                 if (this.height_percent >= 1.1f)
                     this.state = movingState.ENSANCHANDO_BAJITO;
+                break;
+            default:
+                return;
                 break;
         }
 
