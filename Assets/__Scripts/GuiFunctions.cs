@@ -188,6 +188,10 @@ public class GuiFunctions : MonoBehaviour
         }
         else
         {
+            if (timeSector < 0)
+            {
+                timeSector = 0;
+            }
             time[timeSector-1].SetActive(true);
 
         }
