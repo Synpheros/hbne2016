@@ -17,6 +17,7 @@ public class _WavyEffect : MonoBehaviour {
 
     float height_percent = 1f;
     float width_percent = 1f;
+    public bool autoMoveOnStart = false;
     Vector3 pos;
 
     float width, height, realheight;
@@ -25,7 +26,8 @@ public class _WavyEffect : MonoBehaviour {
         this.height = this.transform.localScale.y;
         
         this.realheight = this.GetComponent<RectTransform>().sizeDelta.y;
-        //move(this.transform.localPosition);
+        if(autoMoveOnStart)
+            move(this.transform.localPosition);
     }
 
     public void StopMoving()
