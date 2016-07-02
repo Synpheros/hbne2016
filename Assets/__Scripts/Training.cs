@@ -8,6 +8,13 @@ public class Training : MonoBehaviour {
 
     public bool isHome = false;
 
+    public Color color1;
+    public Color color2;
+    public string ability1;
+    public string ability2;
+
+    public GuiFunctions guiFunctions;
+
     public Sprite trainingSprite;
     public GameObject ability;
     private RectTransform playerTransform;
@@ -36,6 +43,10 @@ public class Training : MonoBehaviour {
 
     public void startTraining()
     {
+        if (guiFunctions.estaAgotado() && !isHome)
+        {
+            return ;
+        } 
         resting = false;
         GameObject player = GameObject.Find("Player");
         playerTransform = player.GetComponent<RectTransform>();
@@ -46,8 +57,9 @@ public class Training : MonoBehaviour {
         }
 
         _WavyEffect wavyEffect = player.GetComponent<_WavyEffect>();
-        if (!isHome) {
-            wavyEffect.StartMoving(); 
+        if (!isHome)
+        {
+            wavyEffect.StartMoving();
         }
         RectTransform thisTransform = this.gameObject.GetComponent<RectTransform>();
         wavyEffect.move(new Vector3(thisTransform.localPosition.x,
@@ -107,6 +119,28 @@ public class Training : MonoBehaviour {
             return;
         }
         GameObject currentAbility = GameObject.Instantiate(ability);
+
+        if (!isHome)
+        {
+            int random = Random.Range(0, 100);
+            if (random % 2 == 0)
+            {
+                currentAbility.GetComponent<Image>().color = color1;
+                upAbility(ability1);
+            }
+            else
+            {
+                currentAbility.GetComponent<Image>().color = color2;
+                upAbility(ability2);
+            }
+        }
+        else
+        {
+            currentAbility.GetComponent<Image>().color = color1;
+            cuidarse(ability1);
+        }
+        
+
         RectTransform abilityTransform = currentAbility.GetComponent<RectTransform>();
         currentAbility.GetComponent<AbilityMovement>().removed = instantiateAbility;
 
@@ -115,5 +149,30 @@ public class Training : MonoBehaviour {
 
         abilityTransform.localPosition = new Vector3(playerTransform.localPosition.x, playerTransform.localPosition.y, 0);
 
+    }
+
+    private void upAbility(string var)
+    {
+        switch (var)
+        {
+            case "coordinacion" : guiFunctions.aumentarCoordinacion(); break;
+            case "concentracion": guiFunctions.aumentarConcentracion(); break;
+            case "ritmo": guiFunctions.aumentarRitmo(); break;
+        }
+
+        guiFunctions.disminuirEnergia();
+        if (guiFunctions.estaAgotado())
+        {
+            stopTraining();
+        }
+    }
+
+    private void cuidarse(string var)
+    {
+        switch (var)
+        {
+            case "health": guiFunctions.aumentarSalud(); break;
+            case "energy": guiFunctions.aumentarEnergia(); break;
+        }
     }
 }

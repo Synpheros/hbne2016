@@ -145,22 +145,27 @@ public class GuiFunctions : MonoBehaviour
 
     public void disminuirSalud()
     {
-        healthSlider.value -= 0.1f;
+        healthSlider.value -= 0.05f;
         if (coordinacionSlider.value == 0)
         {
-            healthSlider.value = 0.1f;
+            healthSlider.value = 0.05f;
         }
         PlayerPrefs.SetFloat("health", healthSlider.value);
     }
 
     public void disminuirEnergia()
     {
-        energySlider.value -= 0.1f;
+        energySlider.value -= 0.05f;
         if (energySlider.value == 0)
         {
-            energySlider.value = 0.1f;
+            energySlider.value = 0.05f;
         }
         PlayerPrefs.SetFloat("energy", energySlider.value);
+    }
+
+    public bool estaAgotado()
+    {
+        return energySlider.value == 0.05f;
     }
 
     private void aumentarDía()
