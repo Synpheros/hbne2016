@@ -22,6 +22,8 @@ public class Training : MonoBehaviour {
     private static Sprite srcSprite;
     private static bool resting = true;
 
+    private int timeCount = 0;
+
     // Use this for initialization
     void Start ()
     {
@@ -119,6 +121,13 @@ public class Training : MonoBehaviour {
             return;
         }
         GameObject currentAbility = GameObject.Instantiate(ability);
+
+        timeCount++;
+
+        if (isHome && timeCount % 6 == 0 || !isHome && timeCount % 4 == 0)
+        {
+            guiFunctions.aumentarHora();
+        }
 
         if (!isHome)
         {
