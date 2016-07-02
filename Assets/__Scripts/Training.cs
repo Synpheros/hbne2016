@@ -18,7 +18,10 @@ public class Training : MonoBehaviour {
         GameObject player = GameObject.Find("Player");
 
         _WavyEffect wavyEffect = player.GetComponent<_WavyEffect>();
-        wavyEffect.StopMoving();
+        if (wavyEffect != null)
+        {
+            wavyEffect.StopMoving();
+        }
 
     }
 	
