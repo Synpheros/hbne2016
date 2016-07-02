@@ -25,15 +25,15 @@ public class _WavyEffect : MonoBehaviour {
         this.height = this.transform.localScale.y;
         
         this.realheight = this.GetComponent<RectTransform>().sizeDelta.y;
-        move(this.transform.localPosition);
+        //move(this.transform.localPosition);
     }
 
     public void StopMoving()
     {
         this.state = movingState.PARADO;
 
-        this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(this.width, this.height, 1f), 0.1f);
-        this.transform.localPosition = new Vector3(this.pos.x, this.pos.y + (this.realheight * this.transform.localScale.y) / 2, this.pos.z);
+       // this.transform.localScale = Vector3.Lerp(this.transform.localScale, new Vector3(this.width, this.height, 1f), 0.1f);
+       // this.transform.localPosition = new Vector3(this.pos.x, this.pos.y + (this.realheight * this.transform.localScale.y) / 2, this.pos.z);
         this.width_percent = 1;
         this.height_percent = 1;
     }

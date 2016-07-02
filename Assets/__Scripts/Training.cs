@@ -6,6 +6,7 @@ public class Training : MonoBehaviour {
 
     private static Image hiddenOption = null;
 
+    public bool isHome = false;
 
     public Sprite trainingSprite;
     public GameObject ability;
@@ -31,10 +32,12 @@ public class Training : MonoBehaviour {
         playerTransform = player.GetComponent<RectTransform>();
 
         _WavyEffect wavyEffect = player.GetComponent<_WavyEffect>();
-        wavyEffect.StartMoving();
+        if (!isHome) {
+            wavyEffect.StartMoving(); 
+        }
         RectTransform thisTransform = this.gameObject.GetComponent<RectTransform>();
         wavyEffect.move(new Vector3(thisTransform.localPosition.x,
-            thisTransform.localPosition.y + playerTransform.rect.height * .4f,
+            thisTransform.localPosition.y + (isHome ? 0 : playerTransform.rect.height * .4f),
             thisTransform.localPosition.z));
 
         if (trainingSprite != null)
@@ -44,14 +47,17 @@ public class Training : MonoBehaviour {
 
         instantiateAbility();
 
-        if(hiddenOption != null)
+        if (!isHome)
         {
-            hiddenOption.color = new Color(1, 1, 1, 1);
+            if (hiddenOption != null)
+            {
+                hiddenOption.color = new Color(1, 1, 1, 1);
 
+            }
+            Image thisImage = this.gameObject.GetComponent<Image>();
+            hiddenOption = thisImage;
+            hiddenOption.color = new Color(1, 1, 1, 0);
         }
-        Image thisImage = this.gameObject.GetComponent<Image>();
-        hiddenOption = thisImage;
-        hiddenOption.color = new Color(1, 1, 1, 0);
     }
 
     void instantiateAbility()
