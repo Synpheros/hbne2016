@@ -1,6 +1,11 @@
 fileFormatVersion: 2
+<<<<<<< 3739b64eaa98ea002440f9164e79a58401728cfd
 guid: 4ec43531b87c5fc4a965bf4d78515345
 timeCreated: 1467393873
+=======
+guid: 7786e7bc58c79594d9b6b722b96e1e1d
+timeCreated: 1467387955
+>>>>>>> other fixes
 licenseType: Free
 MonoImporter:
   serializedVersion: 2

@@ -34,7 +34,7 @@ public class LoadBeatmap : MonoBehaviour {
 		string imageraw = imageloc.Split("."[0])[0];
 		Debug.Log(imageraw);
 		Texture2D tex = Resources.Load<Texture2D>(filelocation+"/"+imageraw) as Texture2D;
-		background.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(0.5f,0.5f));
+		//background.GetComponent<SpriteRenderer>().sprite = Sprite.Create(tex,new Rect(0,0,tex.width,tex.height),new Vector2(0.5f,0.5f));
 		// background.GetComponent<Spr
 		// GetComponent<AudioSource>().Play();
 
