@@ -17,7 +17,7 @@ public class AbilityMovement : MonoBehaviour {
 	void Update () {
 
         elapsedTime += (Time.deltaTime * 20);
-        float newY = transform.localPosition.y + Time.deltaTime * 200;
+        float newY = transform.localPosition.y + Time.deltaTime * 400;
         float newX = transform.localPosition.x + 10 * Mathf.Sin(elapsedTime);
 
         transform.localPosition = new Vector3(newX, newY, 0);
