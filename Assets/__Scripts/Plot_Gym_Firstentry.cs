@@ -15,7 +15,6 @@ public class Plot_Gym_Firstentry : MonoBehaviour
         sequence.Add(new SequenceNode("Tú: ¡Qoah!", new int[] { -1, -1, 0 }));
         sequence.Add(new SequenceNode("Tú: ¡Qué gran día de entrenamiento!", new int[] { -1, -1, 0 }));
         sequence.Add(new SequenceNode("Tú: Gracias a este gimnasio evitaré lesionarme.", new int[] { -1, -1, 0 }));
-        sequence.Add(new SequenceNode("Tú: ...de nuevo...", new int[] { -1, -1, 0 }));
 
         SequenceManager.S.current_sequence = sequence;
     }
